@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9809F5591CF49B990033D253 /* CSRefreshBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809F5581CF49B990033D253 /* CSRefreshBaseView.swift */; };
+		9809F55B1CF4A6CB0033D253 /* CSRefreshConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809F55A1CF4A6CB0033D253 /* CSRefreshConst.swift */; };
 		98B9D10D1CF28DC100E56032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9D10C1CF28DC100E56032 /* AppDelegate.swift */; };
 		98B9D1141CF28DC200E56032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98B9D1131CF28DC200E56032 /* Assets.xcassets */; };
 		98B9D1171CF28DC200E56032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B9D1151CF28DC200E56032 /* LaunchScreen.storyboard */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9809F5581CF49B990033D253 /* CSRefreshBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshBaseView.swift; sourceTree = "<group>"; };
+		9809F55A1CF4A6CB0033D253 /* CSRefreshConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshConst.swift; sourceTree = "<group>"; };
 		98B9D1091CF28DC100E56032 /* CSRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B9D10C1CF28DC100E56032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98B9D1131CF28DC200E56032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 			children = (
 				98B9D17A1CF2906F00E56032 /* UIScrollView+CSRefresh.swift */,
 				98B9D1971CF3552B00E56032 /* UIView+CSRefresh.swift */,
+				9809F5581CF49B990033D253 /* CSRefreshBaseView.swift */,
+				9809F55A1CF4A6CB0033D253 /* CSRefreshConst.swift */,
 			);
 			path = CSRefresh;
 			sourceTree = "<group>";
@@ -320,6 +326,8 @@
 				98B9D1771CF2902B00E56032 /* UIScrollView+MJExtension.m in Sources */,
 				98B9D1731CF2902B00E56032 /* MJRefreshBaseView.m in Sources */,
 				98B9D1791CF2902B00E56032 /* UIView+MJExtension.m in Sources */,
+				9809F55B1CF4A6CB0033D253 /* CSRefreshConst.swift in Sources */,
+				9809F5591CF49B990033D253 /* CSRefreshBaseView.swift in Sources */,
 				98B9D1781CF2902B00E56032 /* UIScrollView+MJRefresh.m in Sources */,
 				98B9D17B1CF2906F00E56032 /* UIScrollView+CSRefresh.swift in Sources */,
 				98B9D1751CF2902B00E56032 /* MJRefreshFooterView.m in Sources */,
