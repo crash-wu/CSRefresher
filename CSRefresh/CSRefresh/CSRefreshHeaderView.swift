@@ -45,6 +45,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: CSRefreshConstStruct.CSRefreshHeaderTimeKey)
             NSUserDefaults.standardUserDefaults().synchronize()
             
+            objc_setAssociatedObject(self, "lastUpdateTime", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             //更新时间
             self.updateTimeLabel()
         }
