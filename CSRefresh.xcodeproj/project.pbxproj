@@ -24,6 +24,7 @@
 		98B9D1791CF2902B00E56032 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B9D1711CF2902B00E56032 /* UIView+MJExtension.m */; };
 		98B9D17B1CF2906F00E56032 /* UIScrollView+CSRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9D17A1CF2906F00E56032 /* UIScrollView+CSRefresh.swift */; };
 		98B9D1981CF3552B00E56032 /* UIView+CSRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9D1971CF3552B00E56032 /* UIView+CSRefresh.swift */; };
+		98DA17501D016D9C0083851A /* CSRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA174F1D016D9C0083851A /* CSRefreshHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		98B9D1711CF2902B00E56032 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		98B9D17A1CF2906F00E56032 /* UIScrollView+CSRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+CSRefresh.swift"; sourceTree = "<group>"; };
 		98B9D1971CF3552B00E56032 /* UIView+CSRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CSRefresh.swift"; sourceTree = "<group>"; };
+		98DA174F1D016D9C0083851A /* CSRefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				98B9D1971CF3552B00E56032 /* UIView+CSRefresh.swift */,
 				9809F5581CF49B990033D253 /* CSRefreshBaseView.swift */,
 				9809F55A1CF4A6CB0033D253 /* CSRefreshConst.swift */,
+				98DA174F1D016D9C0083851A /* CSRefreshHeaderView.swift */,
 			);
 			path = CSRefresh;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				9809F5591CF49B990033D253 /* CSRefreshBaseView.swift in Sources */,
 				98B9D1781CF2902B00E56032 /* UIScrollView+MJRefresh.m in Sources */,
 				98B9D17B1CF2906F00E56032 /* UIScrollView+CSRefresh.swift in Sources */,
+				98DA17501D016D9C0083851A /* CSRefreshHeaderView.swift in Sources */,
 				98B9D1751CF2902B00E56032 /* MJRefreshFooterView.m in Sources */,
 				98B9D10D1CF28DC100E56032 /* AppDelegate.swift in Sources */,
 			);

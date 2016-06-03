@@ -38,11 +38,106 @@ enum CSRefreshViewType : Int{
 
 
 class CSRefreshBaseView: UIView {
+    
+    //.=======================================//
+    //          MARK: 刷新状态                 //
+    //=======================================//
+    
+    var state : CSRefreshState  {
+        
+        get{
+            
+            return objc_getAssociatedObject(self, "csrefreshState") as! CSRefreshState
+        }
+        
+        set{
+        
+            //0.存储当前的contentInset
+        
+            if self.state != .CSRefreshStateRefreshing {
+                scrollViewOriginalInset = self.scrollView.contentInset
+            }
+        
+            // 1.一样的就直接返回(暂时不返回)
+            if self.state == newValue {
+        
+                return
+            }
+        
+            // 2.根据状态执行不同的操作
+            switch newValue {
+                case .CSRefreshStateNormal:
+                    //普通状态
+                    if self.state == .CSRefreshStateRefreshing{
+        
+                        UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshSlowAnimationDuration * 0.6, animations: {
+                                [weak self] in
+                                self?.activityView?.alpha = 0.0
+        
+                            }, completion: {[weak self] (finished :Bool) in
+        
+                                //停止转圈圈
+                              self?.activityView?.stopAnimating()
+                              //恢复alpha
+                             self?.activityView?.alpha = 1.0
+                           })
+        
+                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64( UInt64(CSRefreshConstStruct.CSRefreshSlowAnimationDuration ) * NSEC_PER_SEC)), dispatch_get_main_queue() , {
+                        // 再次设置回normal
+                        self.state = .CSRefreshStateNormal
+                      })
+                        //直接返回
+                        return
+        
+                    }else{
+                        //显示箭头
+                        self.arrowImage?.hidden = false
+                        
+                        // 停止转圈圈
+                        self.activityView?.stopAnimating()
+                    }
+                    break
+                case .CSRefreshStatePulling :
+                    break
+                case .CSRefreshStateRefreshing :
+                    // 开始转圈圈
+                    self.activityView?.startAnimating()
+                    
+                    //隐藏箭头
+                    self.arrowImage?.hidden = true
+                    
+                    //回调
+                    if self.beginRefreshingTaget!.respondsToSelector(self.beginRefreshingAction!) {
+                        
+                        self.beginRefreshingTaget?.addTarget(self, action: self.beginRefreshingAction!)
+                    }
+                    break
+                default:
+                
+                    break
+                }
+            
+            
+            //存储状态
+            objc_setAssociatedObject(self, "csrefreshState", newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            
+            // 4.设置文字
+            self.settingLabelText()
+        }
+    }
+    
+    var scrollView : UIScrollView = UIScrollView()
+    
+    var scrollViewOriginalInset : UIEdgeInsets?
+    
+    var beginRefreshingTaget :AnyObject?
+    
+    var beginRefreshingAction :Selector?
 
     //.=======================================//
     //          MARK: 状态标签                  //
     //=======================================//
-    private weak var statusLabel : UILabel? {
+     weak var statusLabel : UILabel? {
         
         let statusLb : UILabel = UILabel()
         
@@ -60,7 +155,7 @@ class CSRefreshBaseView: UIView {
     //.=======================================//
     //          MARK: 箭头                    //
     //=======================================//
-    private weak var arrowImage : UIImageView?{
+     weak var arrowImage : UIImageView?{
         
         let arrowImageTmp = UIImageView(image: UIImage(named: "arrow"))
         arrowImageTmp.autoresizingMask = [.FlexibleLeftMargin,.FlexibleRightMargin]
@@ -74,7 +169,7 @@ class CSRefreshBaseView: UIView {
     //          MARK: 菊花标识                 //
     //=======================================//
     
-    private weak var activityView : UIActivityIndicatorView?{
+     weak var activityView : UIActivityIndicatorView?{
         
         let activityTmp = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         
@@ -86,10 +181,7 @@ class CSRefreshBaseView: UIView {
         
     }
     
-    //.=======================================//
-    //          MARK: 刷新状态                 //
-    //=======================================//
-    var state : CSRefreshState!
+
     
     
     
@@ -100,11 +192,12 @@ class CSRefreshBaseView: UIView {
     override init(frame: CGRect) {
         
         super.init(frame: CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, CSRefreshConstStruct.CSRefreshViewHeight))
+        
         self.autoresizingMask = [.FlexibleWidth]
         
         //设置背景颜色为透明
         self.backgroundColor = UIColor.clearColor()
-        state = CSRefreshState.CSRefreshStateNormal
+        state = .CSRefreshStateNormal
     }
     
     
@@ -112,4 +205,185 @@ class CSRefreshBaseView: UIView {
         fatalError()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //箭头
+        
+        let arrowX = self.mj_width * 0.5 - 100
+        
+        self.arrowImage?.center = CGPointMake(arrowX, self.mj_height * 0.5)
+        
+        //指示器
+        self.activityView?.center = self.arrowImage!.center
+        
+    }
+    
+    
+    override func willMoveToSuperview(newSuperview: UIView?) {
+        
+        super.willMoveToSuperview(newSuperview)
+        
+        //旧的父控件移除监听
+        
+        superview?.removeObserver(self, forKeyPath: CSRefreshConstStruct.CSRefreshContentOffset, context: nil)
+        
+        
+        guard newSuperview == nil else{
+            
+            newSuperview?.addObserver(self, forKeyPath: CSRefreshConstStruct.CSRefreshContentOffset, options: .New, context: nil)
+            
+            //设置宽度
+            self.mj_width = newSuperview!.mj_width
+            
+            //设置位置
+            self.mj_x = 0
+            
+            //记录UIScrollView
+            self.scrollView = newSuperview as! UIScrollView
+            //UIScrollView 最开始的ContentInset
+            self.scrollViewOriginalInset = scrollView.contentInset
+            
+            return
+        }
+    }
+    
+    //.=======================================//
+    //          MARK: 显示到屏幕上            //
+    //=======================================//
+    
+    override  func drawRect(rect: CGRect) {
+        //如果为将要刷新的状态，则将状态标记为刷新状态
+        if self.state == .CSRefreshStateRefreshing {
+            self.state = .CSRefreshStateRefreshing
+        }
+    }
+    
+    //.=======================================//
+    //          MARK: 刷新 相关操作            //
+    //=======================================//
+    /**
+     是否正在刷新
+     
+     :returns: true(正在刷新)
+     */
+    func isRefreshing() ->Bool{
+        
+        return self.state == .CSRefreshStateRefreshing
+    }
+    
+    /**
+     开始刷新
+     */
+    func beginRefreshing()->Void{
+        
+        
+        if self.state == CSRefreshState.CSRefreshStateRefreshing{
+            //如果是正在刷新状态
+            
+            //刷新方法回调
+            if self.beginRefreshingTaget!.respondsToSelector(self.beginRefreshingAction!) {
+                
+               // objc_msgSend
+                self.beginRefreshingTaget?.addTarget(self, action: self.beginRefreshingAction!)
+            }
+            
+        }else{
+            //如果不是正在刷新状态
+            if self.window != nil{
+                self.state = .CSRefreshStateRefreshing
+                
+            }else{
+                
+                state = .CSRefreshStateRefreshing
+                super.setNeedsDisplay()
+            }
+            
+        }
+    }
+    
+    
+    /**
+     结束刷新
+     */
+    func endRefreshing()->Void{
+        
+        let delayInSeconds = 0.3
+        
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( UInt64(delayInSeconds) * NSEC_PER_SEC))
+        
+        dispatch_after(popTime, dispatch_get_main_queue()) { 
+            [weak self] in
+            
+            self?.state = .CSRefreshStateNormal
+        }
+    }
+    
+    //.=======================================//
+    //          MARK: 设置状态                //
+    //=======================================//
+    
+    var pullToRefreshText :String? {
+        
+        get{
+            
+            return objc_getAssociatedObject(self, "pullToRefreshText") as? String
+        }
+        
+        set{
+            
+            objc_setAssociatedObject(self, "pullToRefreshText", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            self.settingLabelText()
+        }
+    }
+    
+    var releaseToRefreshText :String?{
+        get{
+            
+            return objc_getAssociatedObject(self, "releaseToRefreshText") as? String
+        }
+        
+        set{
+            
+            self.releaseToRefreshText = newValue
+            objc_setAssociatedObject(self, "releaseToRefreshText", newValue,.OBJC_ASSOCIATION_RETAIN_NONATOMIC )
+            self.settingLabelText()
+        }
+    }
+    
+    var refreshingText :String?{
+        
+        get{
+            
+            return  objc_getAssociatedObject(self, "refreshingText") as? String
+        }
+        
+        set{
+            
+            objc_setAssociatedObject(self, "refreshingText", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            self.settingLabelText()
+        }
+    }
+    
+    
+    func settingLabelText()->Void{
+        
+        switch state {
+        case .CSRefreshStateNormal:
+            //设置文字
+            self.statusLabel?.text = self.pullToRefreshText
+            break
+        case .CSRefreshStatePulling :
+            
+            self.statusLabel?.text = self.releaseToRefreshText
+            break
+        case .CSRefreshStateRefreshing :
+            self.statusLabel?.text = self.refreshingText
+            break
+        default:
+            break
+        }
+        
+    }
+    
+    
 }
