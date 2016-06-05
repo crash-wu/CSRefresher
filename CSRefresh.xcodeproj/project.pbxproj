@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9809F5591CF49B990033D253 /* CSRefreshBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809F5581CF49B990033D253 /* CSRefreshBaseView.swift */; };
 		9809F55B1CF4A6CB0033D253 /* CSRefreshConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809F55A1CF4A6CB0033D253 /* CSRefreshConst.swift */; };
+		983938411D047A180055D154 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983938401D047A180055D154 /* MyViewController.swift */; };
 		98B9D10D1CF28DC100E56032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9D10C1CF28DC100E56032 /* AppDelegate.swift */; };
 		98B9D1141CF28DC200E56032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98B9D1131CF28DC200E56032 /* Assets.xcassets */; };
 		98B9D1171CF28DC200E56032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B9D1151CF28DC200E56032 /* LaunchScreen.storyboard */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		9809F5581CF49B990033D253 /* CSRefreshBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshBaseView.swift; sourceTree = "<group>"; };
 		9809F55A1CF4A6CB0033D253 /* CSRefreshConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshConst.swift; sourceTree = "<group>"; };
+		983938401D047A180055D154 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		98B9D1091CF28DC100E56032 /* CSRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B9D10C1CF28DC100E56032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98B9D1131CF28DC200E56032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		98B9D1001CF28DC100E56032 = {
 			isa = PBXGroup;
 			children = (
+				983938401D047A180055D154 /* MyViewController.swift */,
 				98B9D10B1CF28DC100E56032 /* CSRefresh */,
 				98B9D1201CF28DC200E56032 /* CSRefreshTests */,
 				98B9D12B1CF28DC200E56032 /* CSRefreshUITests */,
@@ -335,6 +338,7 @@
 				98B9D17B1CF2906F00E56032 /* UIScrollView+CSRefresh.swift in Sources */,
 				98DA17501D016D9C0083851A /* CSRefreshHeaderView.swift in Sources */,
 				98B9D1751CF2902B00E56032 /* MJRefreshFooterView.m in Sources */,
+				983938411D047A180055D154 /* MyViewController.swift in Sources */,
 				98B9D10D1CF28DC100E56032 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

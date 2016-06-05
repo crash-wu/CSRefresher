@@ -43,11 +43,12 @@ class CSRefreshBaseView: UIView {
     //          MARK: 刷新状态                 //
     //=======================================//
     
-    var state : CSRefreshState  {
+    var state : CSRefreshState{
         
         get{
             
             return objc_getAssociatedObject(self, "csrefreshState") as! CSRefreshState
+
         }
         
         set{

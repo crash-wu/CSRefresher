@@ -51,4 +51,10 @@ struct CSRefreshConstStruct {
     
     static let CSRefreshContentSize = "contentSize"
     
+    
+    //.=======================================//
+    //          MARK:           //
+    //=======================================//
+    
+    static let CSRefreshHeaderViewKey = "CSRefreshHeaderViewKey"
 }
