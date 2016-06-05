@@ -101,7 +101,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
         self.pullToRefreshText = CSRefreshConstStruct.CSRefreshHeaderPullToRefresh
         self.releaseToRefreshText = CSRefreshConstStruct.CSRefreshFooterReleaseToRefresh
         self.refreshingText = CSRefreshConstStruct.CSRefreshHeaderRefreshing
-        
+       // self.state = .CSRefreshStateNormal
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -198,13 +198,12 @@ class CSRefreshHeaderView: CSRefreshBaseView {
     }
     
     //.******** 重写父类的state属性 *********/
-    override var state : CSRefreshState{
-       
+    override var state : CSRefreshState {
+        
         get{
             
-            return self.state
+            return super.state
         }
-        
         set{
             
             //如果值相同，则返回
@@ -219,7 +218,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
             super.state = newValue
             
             //根据状态执行不同的操作
-            switch state {
+            switch newValue {
             case .CSRefreshStateNormal:
                 //下拉可以刷新
                 if oldState == CSRefreshState.CSRefreshStateRefreshing {

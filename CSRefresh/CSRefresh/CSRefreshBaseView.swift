@@ -43,15 +43,9 @@ class CSRefreshBaseView: UIView {
     //          MARK: 刷新状态                 //
     //=======================================//
     
-    var state : CSRefreshState{
-        
-        get{
-            
-            return objc_getAssociatedObject(self, "csrefreshState") as! CSRefreshState
+    var state : CSRefreshState = .CSRefreshStateNormal{
 
-        }
-        
-        set{
+        willSet{
         
             //0.存储当前的contentInset
         
@@ -120,8 +114,8 @@ class CSRefreshBaseView: UIView {
             
             
             //存储状态
-            objc_setAssociatedObject(self, "csrefreshState", newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            
+           // objc_setAssociatedObject(self, "csrefreshState", newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+          //  self.state = newValue
             // 4.设置文字
             self.settingLabelText()
         }
@@ -198,7 +192,7 @@ class CSRefreshBaseView: UIView {
         
         //设置背景颜色为透明
         self.backgroundColor = UIColor.clearColor()
-        state = .CSRefreshStateNormal
+        self.state = .CSRefreshStateNormal
     }
     
     
@@ -254,7 +248,7 @@ class CSRefreshBaseView: UIView {
     
     override  func drawRect(rect: CGRect) {
         //如果为将要刷新的状态，则将状态标记为刷新状态
-        if self.state == .CSRefreshStateRefreshing {
+        if self.state == .CSRefreshStateWillRefreshing {
             self.state = .CSRefreshStateRefreshing
         }
     }
@@ -345,7 +339,7 @@ class CSRefreshBaseView: UIView {
         
         set{
             
-            self.releaseToRefreshText = newValue
+          //  self.releaseToRefreshText = newValue
             objc_setAssociatedObject(self, "releaseToRefreshText", newValue,.OBJC_ASSOCIATION_RETAIN_NONATOMIC )
             self.settingLabelText()
         }
