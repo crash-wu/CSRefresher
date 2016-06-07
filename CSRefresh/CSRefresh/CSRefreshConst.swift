@@ -56,5 +56,14 @@ struct CSRefreshConstStruct {
     //          MARK:           //
     //=======================================//
     
-    static let CSRefreshHeaderViewKey = "CSRefreshHeaderViewKey"
+    //.******** 头部动态绑定指针 *********/
+    static var  CSRefreshHeaderViewKey = "CSRefreshHeaderViewKey"
+    
+    static var CSReleaseToRefreshText = "releaseToRefreshText"
+    
+    static var CSRefreshingText = "refreshingText"
+    
+    static var CSPullToRefreshText = "pullToRefreshText"
+    
+    static var LastUpdateTime = "lastUpdateTime"
 }

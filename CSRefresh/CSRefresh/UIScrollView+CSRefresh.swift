@@ -155,7 +155,8 @@ extension UIScrollView{
         
         get{
             
-            return objc_getAssociatedObject(self, CSRefreshConstStruct.CSRefreshHeaderViewKey) as? CSRefreshHeaderView
+
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSRefreshHeaderViewKey) as? CSRefreshHeaderView
         }
         
         set{
@@ -163,7 +164,7 @@ extension UIScrollView{
             self.willChangeValueForKey(CSRefreshConstStruct.CSRefreshHeaderViewKey)
             
             //动态绑定
-            objc_setAssociatedObject(self, CSRefreshConstStruct.CSRefreshHeaderViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSRefreshHeaderViewKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
             
             self.didChangeValueForKey(CSRefreshConstStruct.CSRefreshHeaderViewKey)
         }
@@ -174,16 +175,10 @@ extension UIScrollView{
     //.=======================================//
     //          MARK: 下拉刷新                 //
     //=======================================//
+
     
-    /**
-     添加一个下拉刷新头部控件
-     
-     :param: target 目标
-     :param: action 回调方法
-     */
-    func addHeaderWithTarget(target : AnyObject! ,action:Selector){
-        
-        //如果头部不存在，则创建
+    
+    func addHeaderRefreshHandler(handler:(Void->Void)?){
         
         if self.header == nil{
             
@@ -193,9 +188,7 @@ extension UIScrollView{
             self.header = headerTmp
         }
         
-        //设置回调方法，同目标
-        self.header?.beginRefreshingTaget = target
-        self.header?.beginRefreshingAction = action
+        self.header?.refreshHandler = handler
     }
     
     /**

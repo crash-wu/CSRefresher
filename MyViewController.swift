@@ -20,10 +20,19 @@ class MyViewController: UIViewController,UITableViewDelegate,UITableViewDataSour
         tableView?.dataSource = self
         tableView?.delegate = self
         self.view.addSubview(tableView!)
-                tableView?.addHeaderWithTarget(self, action: #selector(MyViewController.tableViewRefresh))
-                tableView?.headerPullToRefreshText = "下拉可以刷新了"
-                tableView?.headerReleaseToRefreshText = "松开马上刷新了"
-                tableView?.headerRefreshingText = "正在加载..."
+        
+
+        tableView?.addHeaderRefreshHandler({ () in
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [weak self] in
+                
+                self?.tableView?.header?.endRefreshing()
+            }
+            
+        })
+        tableView?.headerPullToRefreshText = "下拉可以刷新了"
+        tableView?.headerReleaseToRefreshText = "松开马上刷新了"
+        tableView?.headerRefreshingText = "正在加载..."
     }
     
     override func didReceiveMemoryWarning() {

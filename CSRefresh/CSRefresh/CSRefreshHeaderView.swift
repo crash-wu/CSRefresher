@@ -26,7 +26,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
         self.addSubview(lable)
         
         //加载时间
-        self.lastUpdateTime =  NSUserDefaults.standardUserDefaults().objectForKey(CSRefreshConstStruct.CSRefreshHeaderTimeKey) as?NSDate
+        lastUpdateTime =  NSUserDefaults.standardUserDefaults().objectForKey(CSRefreshConstStruct.CSRefreshHeaderTimeKey) as?NSDate
         return lable
     }
     
@@ -36,7 +36,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
        
         get{
             
-            return objc_getAssociatedObject(self, "lastUpdateTime") as? NSDate
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.LastUpdateTime) as? NSDate
         }
         
         set{
@@ -45,7 +45,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: CSRefreshConstStruct.CSRefreshHeaderTimeKey)
             NSUserDefaults.standardUserDefaults().synchronize()
             
-            objc_setAssociatedObject(self, "lastUpdateTime", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.LastUpdateTime, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             //更新时间
             self.updateTimeLabel()
         }
@@ -54,7 +54,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
     //.******** 更新时间 *********/
     func updateTimeLabel()->Void{
         
-        guard lastUpdateTime != nil else{
+        if lastUpdateTime == nil{
             
             return
         }
@@ -81,7 +81,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
         }
         
         
-        let time :String = formatter.stringFromDate(self.lastUpdateTime!)
+        let time :String = formatter.stringFromDate(lastUpdateTime!)
         self.lastUpdateTimeLabel?.text = "最后更新:" + "\(time)"
 
     }

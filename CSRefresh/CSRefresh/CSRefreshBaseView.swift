@@ -8,6 +8,12 @@
 
 import UIKit
 
+@objc protocol CSRefreshDelegate : NSObjectProtocol {
+    
+    optional func refreshHead()->Void
+    
+    optional func refreshFoot()->Void
+}
 
 /**
  刷新状态
@@ -102,20 +108,17 @@ class CSRefreshBaseView: UIView {
                     self.arrowImage?.hidden = true
                     
                     //回调
-                    if self.beginRefreshingTaget!.respondsToSelector(self.beginRefreshingAction!) {
+
+                    guard refreshHandler == nil else{
                         
-                        self.beginRefreshingTaget?.addTarget(self, action: self.beginRefreshingAction!)
+                        refreshHandler?()
+                        return
                     }
                     break
                 default:
                 
                     break
                 }
-            
-            
-            //存储状态
-           // objc_setAssociatedObject(self, "csrefreshState", newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-          //  self.state = newValue
             // 4.设置文字
             self.settingLabelText()
         }
@@ -125,9 +128,7 @@ class CSRefreshBaseView: UIView {
     
     var scrollViewOriginalInset : UIEdgeInsets?
     
-    var beginRefreshingTaget :AnyObject?
-    
-    var beginRefreshingAction :Selector?
+    var refreshHandler:(Void->Void)?//声明一个刷新闭包
 
     //.=======================================//
     //          MARK: 状态标签                  //
@@ -276,10 +277,10 @@ class CSRefreshBaseView: UIView {
             //如果是正在刷新状态
             
             //刷新方法回调
-            if self.beginRefreshingTaget!.respondsToSelector(self.beginRefreshingAction!) {
+            guard refreshHandler == nil else{
                 
-               // objc_msgSend
-                self.beginRefreshingTaget?.addTarget(self, action: self.beginRefreshingAction!)
+                refreshHandler?()
+                return
             }
             
         }else{
@@ -321,12 +322,12 @@ class CSRefreshBaseView: UIView {
         
         get{
             
-            return objc_getAssociatedObject(self, "pullToRefreshText") as? String
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSPullToRefreshText) as? String
         }
         
         set{
             
-            objc_setAssociatedObject(self, "pullToRefreshText", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSPullToRefreshText, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.settingLabelText()
         }
     }
@@ -334,13 +335,12 @@ class CSRefreshBaseView: UIView {
     var releaseToRefreshText :String?{
         get{
             
-            return objc_getAssociatedObject(self, "releaseToRefreshText") as? String
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSReleaseToRefreshText) as? String
         }
         
         set{
-            
-          //  self.releaseToRefreshText = newValue
-            objc_setAssociatedObject(self, "releaseToRefreshText", newValue,.OBJC_ASSOCIATION_RETAIN_NONATOMIC )
+
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSReleaseToRefreshText, newValue,.OBJC_ASSOCIATION_RETAIN_NONATOMIC )
             self.settingLabelText()
         }
     }
@@ -349,12 +349,12 @@ class CSRefreshBaseView: UIView {
         
         get{
             
-            return  objc_getAssociatedObject(self, "refreshingText") as? String
+            return  objc_getAssociatedObject(self, &CSRefreshConstStruct.CSRefreshingText) as? String
         }
         
         set{
             
-            objc_setAssociatedObject(self, "refreshingText", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSRefreshingText, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.settingLabelText()
         }
     }
