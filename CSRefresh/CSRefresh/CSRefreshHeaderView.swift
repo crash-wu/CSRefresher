@@ -221,7 +221,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
             switch newValue {
             case .CSRefreshStateNormal:
                 //下拉可以刷新
-                if oldState == .CSRefreshStateRefreshing {
+                if oldState == CSRefreshState.CSRefreshStateRefreshing {
                     
                     //箭头翻转
                     self.arrowImage?.transform = CGAffineTransformIdentity
