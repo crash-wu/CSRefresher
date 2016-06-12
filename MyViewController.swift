@@ -30,8 +30,8 @@ class MyViewController: UIViewController,UITableViewDelegate,UITableViewDataSour
             }
             
         })
-        tableView?.headerPullToRefreshText = "下拉可以刷新了"
-        tableView?.headerReleaseToRefreshText = "松开马上刷新了"
+        tableView?.headerPullToRefreshText = "下拉刷新"
+        tableView?.headerReleaseToRefreshText = "松开马上刷新"
         tableView?.headerRefreshingText = "正在加载..."
     }
     

@@ -15,7 +15,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
     //=======================================//
     
     //.******** 时间显示条 *********/
-    var lastUpdateTimeLabel :UILabel?{
+    lazy var lastUpdateTimeLabel :UILabel? = {
         
         let lable = UILabel()
         lable.autoresizingMask = [.FlexibleWidth]
@@ -25,10 +25,8 @@ class CSRefreshHeaderView: CSRefreshBaseView {
         lable.textColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1.0)
         self.addSubview(lable)
         
-        //加载时间
-        lastUpdateTime =  NSUserDefaults.standardUserDefaults().objectForKey(CSRefreshConstStruct.CSRefreshHeaderTimeKey) as?NSDate
         return lable
-    }
+    }()
     
     
     //.******** 时间 *********/
@@ -54,7 +52,9 @@ class CSRefreshHeaderView: CSRefreshBaseView {
     //.******** 更新时间 *********/
     func updateTimeLabel()->Void{
         
-        if lastUpdateTime == nil{
+        let lastUpdateTmp = objc_getAssociatedObject(self, &CSRefreshConstStruct.LastUpdateTime) as? NSDate
+        
+        if lastUpdateTmp == nil{
             
             return
         }
@@ -64,7 +64,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
 
         let unitFlags : NSCalendarUnit = [.Year,.Month,.Day,.Hour,.Minute]
         
-        let cmp1 : NSDateComponents = calendar.components(unitFlags, fromDate: lastUpdateTime!)
+        let cmp1 : NSDateComponents = calendar.components(unitFlags, fromDate: lastUpdateTmp!)
         
         let cmp2 :NSDateComponents = calendar.components(unitFlags, fromDate: NSDate())
         // 2.格式化日期
@@ -81,7 +81,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
         }
         
         
-        let time :String = formatter.stringFromDate(lastUpdateTime!)
+        let time :String = formatter.stringFromDate(lastUpdateTmp!)
         self.lastUpdateTimeLabel?.text = "最后更新:" + "\(time)"
 
     }
@@ -101,7 +101,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
         self.pullToRefreshText = CSRefreshConstStruct.CSRefreshHeaderPullToRefresh
         self.releaseToRefreshText = CSRefreshConstStruct.CSRefreshFooterReleaseToRefresh
         self.refreshingText = CSRefreshConstStruct.CSRefreshHeaderRefreshing
-       // self.state = .CSRefreshStateNormal
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -117,7 +117,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
         let statusWidth :CGFloat = self.mj_width
         
         // 1.状态标签
-        self.statusLabel?.frame = CGRectMake(statusX, statusY, statusWidth, statusHeight)
+        statusLabel?.frame = CGRectMake(statusX, statusY, statusWidth, statusHeight)
         
          // 2.时间标签
         let lastUpdateY :CGFloat = statusHeight
@@ -221,7 +221,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
             switch newValue {
             case .CSRefreshStateNormal:
                 //下拉可以刷新
-                if oldState == CSRefreshState.CSRefreshStateRefreshing {
+                if oldState == .CSRefreshStateRefreshing {
                     
                     //箭头翻转
                     self.arrowImage?.transform = CGAffineTransformIdentity

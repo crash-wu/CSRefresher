@@ -247,7 +247,7 @@ extension UIScrollView{
      */
     func isHeaderRefreshing()->Bool{
         
-        return self.header?.state == CSRefreshState.CSRefreshStateRefreshing
+        return self.header?.state == .CSRefreshStateRefreshing
     }
     
     

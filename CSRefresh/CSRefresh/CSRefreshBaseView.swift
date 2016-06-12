@@ -54,7 +54,6 @@ class CSRefreshBaseView: UIView {
         willSet{
         
             //0.存储当前的contentInset
-        
             if self.state != .CSRefreshStateRefreshing {
                 scrollViewOriginalInset = self.scrollView.contentInset
             }
@@ -64,6 +63,9 @@ class CSRefreshBaseView: UIView {
         
                 return
             }
+            
+            // 4.设置文字
+            self.settingLabelText()
         
             // 2.根据状态执行不同的操作
             switch newValue {
@@ -99,6 +101,12 @@ class CSRefreshBaseView: UIView {
                     }
                     break
                 case .CSRefreshStatePulling :
+                    
+                    //显示箭头
+                    self.arrowImage?.hidden = false
+                    
+                    //停止转圈圈
+                    self.activityView?.stopAnimating()
                     break
                 case .CSRefreshStateRefreshing :
                     // 开始转圈圈
@@ -119,8 +127,7 @@ class CSRefreshBaseView: UIView {
                 
                     break
                 }
-            // 4.设置文字
-            self.settingLabelText()
+
         }
     }
     
@@ -133,39 +140,40 @@ class CSRefreshBaseView: UIView {
     //.=======================================//
     //          MARK: 状态标签                  //
     //=======================================//
-     weak var statusLabel : UILabel? {
-        
+   lazy  var statusLabel : UILabel? = {
+    
         let statusLb : UILabel = UILabel()
         
+        statusLb.translatesAutoresizingMaskIntoConstraints = true
         statusLb.autoresizingMask = [.FlexibleWidth]
         statusLb.font = UIFont.boldSystemFontOfSize(13)
         statusLb.textColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1.0)
         statusLb.backgroundColor = UIColor.clearColor()
         statusLb.textAlignment = .Center
-        
         self.addSubview(statusLb)
         return statusLb
-    }
+    }()
     
     
     //.=======================================//
     //          MARK: 箭头                    //
     //=======================================//
-     weak var arrowImage : UIImageView?{
+    lazy  var arrowImage : UIImageView? = {
         
         let arrowImageTmp = UIImageView(image: UIImage(named: "arrow"))
+        arrowImageTmp.translatesAutoresizingMaskIntoConstraints = true
         arrowImageTmp.autoresizingMask = [.FlexibleLeftMargin,.FlexibleRightMargin]
         self.addSubview(arrowImageTmp)
         
         return arrowImageTmp
-    }
+    }()
     
     
     //.=======================================//
     //          MARK: 菊花标识                 //
     //=======================================//
     
-     weak var activityView : UIActivityIndicatorView?{
+    lazy  var activityView : UIActivityIndicatorView? = {
         
         let activityTmp = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         
@@ -175,7 +183,7 @@ class CSRefreshBaseView: UIView {
         self.addSubview(activityTmp)
         return activityTmp
         
-    }
+    }()
     
 
     
@@ -190,7 +198,7 @@ class CSRefreshBaseView: UIView {
         super.init(frame: CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, CSRefreshConstStruct.CSRefreshViewHeight))
         
         self.autoresizingMask = [.FlexibleWidth]
-        
+
         //设置背景颜色为透明
         self.backgroundColor = UIColor.clearColor()
         self.state = .CSRefreshStateNormal
@@ -365,14 +373,14 @@ class CSRefreshBaseView: UIView {
         switch state {
         case .CSRefreshStateNormal:
             //设置文字
-            self.statusLabel?.text = self.pullToRefreshText
+            statusLabel?.text = self.pullToRefreshText
             break
         case .CSRefreshStatePulling :
             
-            self.statusLabel?.text = self.releaseToRefreshText
+            statusLabel?.text = self.releaseToRefreshText
             break
         case .CSRefreshStateRefreshing :
-            self.statusLabel?.text = self.refreshingText
+           statusLabel?.text = self.refreshingText
             break
         default:
             break
