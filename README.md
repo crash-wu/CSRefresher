@@ -14,8 +14,9 @@ pull to refresh UITableView/UICollectView
        * Drag all file in the CSRefresher folder to project
 
 ## How to use CSRefresher
- * The drop-down refresh
-   
+ # The drop-down refresh
+ 
+ 
     tableView?.addHeaderRefreshHandler({ () in
     
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [weak self] in
