@@ -16,11 +16,16 @@ pull to refresh UITableView/UICollectView
 ## How to use CSRefresher
  # The drop-down refresh
  
- 
+   //UITableView 添加下拉刷新功能
     tableView?.addHeaderRefreshHandler({ () in
     
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [weak self] in
-    
+     //结束刷新
        self?.tableView?.header?.endRefreshing()
      }
     })
+    
+    //添加提示文本
+    tableView?.headerPullToRefreshText = "下拉刷新"
+    tableView?.headerReleaseToRefreshText = "松开马上刷新"
+    tableView?.headerRefreshingText = "正在加载..."
