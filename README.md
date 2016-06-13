@@ -14,5 +14,4 @@ pull to refresh UITableView/UICollectView
        * Drag all file in the CSRefresher folder to project
 
 ## How to use CSRefresher
-  
-      
+  # The drop-down refresh
