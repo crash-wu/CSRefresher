@@ -33,5 +33,6 @@ pull to refresh UITableView/UICollectView
     tableView?.headerReleaseToRefreshText = "松开马上刷新"
     tableView?.headerRefreshingText = "正在加载..."
 ## Example
+
 ![(下拉刷新)](http://images.cnblogs.com/cnblogs_com/crash-wu/840824/o_Untitled1.gif)
 
