@@ -170,7 +170,7 @@
                   moduleName = "CSRefresh"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wuxiaoxing/Desktop/CSRefresh/MyViewController.swift"
-                  timestampString = "487437924.356241"
+                  timestampString = "487523483.303781"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -185,7 +185,7 @@
                   moduleName = "CSRefresh"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wuxiaoxing/Desktop/CSRefresh/MyViewController.swift"
-                  timestampString = "487437924.356552"
+                  timestampString = "487523483.304059"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CSRefresh/CSRefresh/CSRefreshBaseView.swift"
-            timestampString = "487437923.248526"
+            timestampString = "487523482.209023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "statusLabel"
             landmarkType = "19">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CSRefresh/CSRefresh/CSRefreshBaseView.swift"
-            timestampString = "487437923.248526"
+            timestampString = "487523482.209023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "arrowImage"
             landmarkType = "19">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CSRefresh/CSRefresh/CSRefreshBaseView.swift"
-            timestampString = "487437923.248526"
+            timestampString = "487523482.209023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "CSRefreshBaseView"
             landmarkType = "3">
          </BreakpointContent>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CSRefresh/CSRefresh/CSRefreshBaseView.swift"
-            timestampString = "487437923.248526"
+            timestampString = "487523482.209023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "CSRefreshBaseView"
             landmarkType = "3">
          </BreakpointContent>
@@ -544,6 +544,70 @@
             startingLineNumber = "166"
             endingLineNumber = "166"
             landmarkName = "adjustStateWithContentOffset()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSRefresh/CSRefresh/CSRefreshHeaderView.swift"
+            timestampString = "487521805.037099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "willMoveToSuperview(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSRefresh/CSRefresh/CSRefreshBaseView.swift"
+            timestampString = "487523482.209023"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "willMoveToSuperview(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSRefresh/CSRefresh/CSRefreshHeaderView.swift"
+            timestampString = "487522332.640152"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "observeValueForKeyPath(_:ofObject:change:context:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSRefresh/CSRefresh/CSRefreshBaseView.swift"
+            timestampString = "487523482.209023"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "settingLabelText()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

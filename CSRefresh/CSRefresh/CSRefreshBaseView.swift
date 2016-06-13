@@ -50,6 +50,11 @@ class CSRefreshBaseView: UIView {
     //=======================================//
     
     var state : CSRefreshState = .CSRefreshStateNormal{
+        
+        didSet{
+            
+            self.settingLabelText()
+        }
 
         willSet{
         
@@ -65,7 +70,7 @@ class CSRefreshBaseView: UIView {
             }
             
             // 4.设置文字
-            self.settingLabelText()
+          //  self.settingLabelText()
         
             // 2.根据状态执行不同的操作
             switch newValue {
