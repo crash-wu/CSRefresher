@@ -323,7 +323,7 @@ extension UIScrollView{
      
      :param: handler 上拉刷新闭包
      */
-    func pullupToRefresh(handler:(Void->Void)?)->Void{
+    func pullUpToRefresh(handler:(Void->Void)?)->Void{
         
         if self.footer == nil {
             

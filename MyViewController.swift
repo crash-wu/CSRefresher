@@ -39,7 +39,7 @@ class MyViewController: UIViewController,UITableViewDelegate,UITableViewDataSour
         
         
         
-        tableView?.pullupToRefresh ({ (_) in
+        tableView?.pullUpToRefresh ({ (_) in
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [weak self] in
                 
