@@ -10,6 +10,8 @@
 		983938411D047A180055D154 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983938401D047A180055D154 /* MyViewController.swift */; };
 		985171461D182B3600A99F89 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985171451D182B3600A99F89 /* Cell.swift */; };
 		985171481D18381E00A99F89 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 985171471D18381E00A99F89 /* README.md */; };
+		9851714A1D183F6D00A99F89 /* CSRefresher.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 985171491D183F6D00A99F89 /* CSRefresher.podspec */; };
+		9851714C1D18434D00A99F89 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9851714B1D18434D00A99F89 /* LICENSE */; };
 		986CEF441D119603001AF625 /* CSRefreshFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986CEF431D119603001AF625 /* CSRefreshFootView.swift */; };
 		98B9D10D1CF28DC100E56032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9D10C1CF28DC100E56032 /* AppDelegate.swift */; };
 		98B9D1141CF28DC200E56032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98B9D1131CF28DC200E56032 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		983938401D047A180055D154 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		985171451D182B3600A99F89 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		985171471D18381E00A99F89 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		985171491D183F6D00A99F89 /* CSRefresher.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CSRefresher.podspec; sourceTree = "<group>"; };
+		9851714B1D18434D00A99F89 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		986CEF431D119603001AF625 /* CSRefreshFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshFootView.swift; sourceTree = "<group>"; };
 		98B9D1091CF28DC100E56032 /* CSRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B9D10C1CF28DC100E56032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 		98B9D1001CF28DC100E56032 = {
 			isa = PBXGroup;
 			children = (
+				9851714B1D18434D00A99F89 /* LICENSE */,
+				985171491D183F6D00A99F89 /* CSRefresher.podspec */,
 				985171471D18381E00A99F89 /* README.md */,
 				985171451D182B3600A99F89 /* Cell.swift */,
 				983938401D047A180055D154 /* MyViewController.swift */,
@@ -272,6 +278,8 @@
 				98B9D1171CF28DC200E56032 /* LaunchScreen.storyboard in Resources */,
 				98B9D1141CF28DC200E56032 /* Assets.xcassets in Resources */,
 				98D1819E1D071103005AD7B2 /* arrow@2x.png in Resources */,
+				9851714A1D183F6D00A99F89 /* CSRefresher.podspec in Resources */,
+				9851714C1D18434D00A99F89 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
