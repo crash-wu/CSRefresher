@@ -51,5 +51,7 @@ pull to refresh UITableView/UICollectView
         tableView?.footerReleaseToRefreshText = "重开马上加载"
         tableView?.footerRefreshingText = "正在加载..."
     
+## Example 
 
+![(上拉加载更多)](http://images.cnblogs.com/cnblogs_com/crash-wu/840824/o_pullUpToRefresh.gif)
 
