@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		983938411D047A180055D154 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983938401D047A180055D154 /* MyViewController.swift */; };
+		985171461D182B3600A99F89 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985171451D182B3600A99F89 /* Cell.swift */; };
+		986CEF441D119603001AF625 /* CSRefreshFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986CEF431D119603001AF625 /* CSRefreshFootView.swift */; };
 		98B9D10D1CF28DC100E56032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9D10C1CF28DC100E56032 /* AppDelegate.swift */; };
 		98B9D1141CF28DC200E56032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98B9D1131CF28DC200E56032 /* Assets.xcassets */; };
 		98B9D1171CF28DC200E56032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B9D1151CF28DC200E56032 /* LaunchScreen.storyboard */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		983938401D047A180055D154 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		985171451D182B3600A99F89 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		986CEF431D119603001AF625 /* CSRefreshFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshFootView.swift; sourceTree = "<group>"; };
 		98B9D1091CF28DC100E56032 /* CSRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B9D10C1CF28DC100E56032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98B9D1131CF28DC200E56032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,7 +55,6 @@
 		98B9D1281CF28DC200E56032 /* CSRefreshUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSRefreshUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B9D12C1CF28DC200E56032 /* CSRefreshUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSRefreshUITests.swift; sourceTree = "<group>"; };
 		98B9D12E1CF28DC200E56032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98B9D15D1CF28FEB00E56032 /* CSRefresh-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSRefresh-Bridging-Header.h"; sourceTree = "<group>"; };
 		98D181941D071103005AD7B2 /* CSRefreshBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshBaseView.swift; sourceTree = "<group>"; };
 		98D181951D071103005AD7B2 /* CSRefreshConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshConst.swift; sourceTree = "<group>"; };
 		98D181961D071103005AD7B2 /* CSRefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRefreshHeaderView.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 		98B9D1001CF28DC100E56032 = {
 			isa = PBXGroup;
 			children = (
+				985171451D182B3600A99F89 /* Cell.swift */,
 				983938401D047A180055D154 /* MyViewController.swift */,
 				98B9D10B1CF28DC100E56032 /* CSRefresh */,
 				98B9D1201CF28DC200E56032 /* CSRefreshTests */,
@@ -114,7 +118,6 @@
 				98B9D1131CF28DC200E56032 /* Assets.xcassets */,
 				98B9D1151CF28DC200E56032 /* LaunchScreen.storyboard */,
 				98B9D1181CF28DC200E56032 /* Info.plist */,
-				98B9D15D1CF28FEB00E56032 /* CSRefresh-Bridging-Header.h */,
 			);
 			path = CSRefresh;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				98D181961D071103005AD7B2 /* CSRefreshHeaderView.swift */,
 				98D181991D071103005AD7B2 /* UIScrollView+CSRefresh.swift */,
 				98D1819A1D071103005AD7B2 /* UIView+CSRefresh.swift */,
+				986CEF431D119603001AF625 /* CSRefreshFootView.swift */,
 			);
 			path = CSRefresh;
 			sourceTree = "<group>";
@@ -293,6 +297,8 @@
 				98D1819C1D071103005AD7B2 /* CSRefreshConst.swift in Sources */,
 				98D1819B1D071103005AD7B2 /* CSRefreshBaseView.swift in Sources */,
 				983938411D047A180055D154 /* MyViewController.swift in Sources */,
+				986CEF441D119603001AF625 /* CSRefreshFootView.swift in Sources */,
+				985171461D182B3600A99F89 /* Cell.swift in Sources */,
 				98B9D10D1CF28DC100E56032 /* AppDelegate.swift in Sources */,
 				98D181A01D071103005AD7B2 /* UIView+CSRefresh.swift in Sources */,
 				98D1819D1D071103005AD7B2 /* CSRefreshHeaderView.swift in Sources */,
@@ -435,8 +441,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.southgis.CSRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CSRefresh/CSRefresh-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -450,7 +457,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.southgis.CSRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CSRefresh/CSRefresh-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

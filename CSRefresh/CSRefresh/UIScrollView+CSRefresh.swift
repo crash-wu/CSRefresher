@@ -148,6 +148,7 @@ extension UIScrollView{
     
 }
 
+//MARK: Drop down refresh
 extension UIScrollView{
     
     //.******** HeadView *********/
@@ -178,7 +179,7 @@ extension UIScrollView{
 
     
     
-    func addHeaderRefreshHandler(handler:(Void->Void)?){
+    func dropDownToRefresh(handler:(Void->Void)?){
         
         if self.header == nil{
             
@@ -293,3 +294,142 @@ extension UIScrollView{
         }
     }
 }
+
+
+//MARK: 
+extension UIScrollView{
+    
+    
+    var footer :CSRefreshFootView?{
+        
+        get{
+            
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSRefreshFootViewPointKey) as? CSRefreshFootView
+        }
+        
+        
+        set{
+            
+            self.willChangeValueForKey(CSRefreshConstStruct.CSRefreshFootViewPointKey)
+            
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSRefreshFootViewPointKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            
+            self.didChangeValueForKey(CSRefreshConstStruct.CSRefreshFootViewPointKey)
+        }
+    }
+    
+    /**
+     上拉刷新
+     
+     :param: handler 上拉刷新闭包
+     */
+    func pullupToRefresh(handler:(Void->Void)?)->Void{
+        
+        if self.footer == nil {
+            
+            let footerTemp : CSRefreshFootView = CSRefreshFootView()
+            
+            self.addSubview(footerTemp)
+            
+            self.footer = footerTemp
+        }
+        
+        self.footer?.refreshHandler = handler
+    }
+    
+    /**
+     移除上拉刷新尾部控件
+     */
+    func removeFooter()->Void{
+        
+        self.footer?.removeFromSuperview()
+        self.footer = nil
+        
+    }
+    
+    /**
+     主动进入刷新状态
+     */
+    func footerBeginRefreshing()->Void{
+        
+        self.footer?.beginRefreshing()
+    }
+    
+    /**
+     停止刷新
+     */
+    func footerEndRefresh()->Void{
+        
+        self.footer?.endRefreshing()
+    }
+    
+    
+    /**
+     设置是否隐藏尾部刷新控件
+     
+     :param: hidden 隐藏状态(true = 隐藏)
+     */
+    func setFooterHidden(hidden :Bool) ->Void{
+        
+        self.footer?.hidden = hidden
+    }
+    
+    /**
+     获取尾部刷新控件隐藏状态
+     
+     :returns: true = 隐藏
+     */
+    func isFooterHidden()->Bool{
+        
+        return self.footer!.hidden
+    }
+    
+    
+    //.=======================================//
+    //          MARK: 设置尾部刷新控件提示文本    //
+    //=======================================//
+    
+    var footerPullToRefreshText :String?{
+        
+        get{
+            
+           return self.footer?.pullToRefreshText
+        }
+        
+        set{
+            
+            self.footer?.pullToRefreshText = newValue
+        }
+    }
+    
+    
+    var footerReleaseToRefreshText : String?{
+        
+        get{
+            
+            return self.footer?.releaseToRefreshText
+        }
+        
+        
+        set{
+            
+            self.footer?.releaseToRefreshText = newValue
+        }
+    }
+    
+    
+    var footerRefreshingText: String?{
+        
+        get{
+            
+            return self.footer?.refreshingText
+        }
+        
+        set{
+            
+            self.footer?.refreshingText = newValue
+        }
+    }
+}
+
+

@@ -29,17 +29,17 @@ struct CSRefreshConstStruct {
     //          MARK: 上拉下拉提示描述          //
     //=======================================//
     
-    static let CSRefreshFooterPullToRefresh = "上拉可以加载更多数据"
+    static let CSRefreshFooterPullToRefresh = "上拉加载更多数据"
     
-    static let CSRefreshFooterReleaseToRefresh = "松开立即加载更多数据"
+    static let CSRefreshFooterReleaseToRefresh = "松开立即"
     
-    static let CSRefreshFooterRefreshing = "正在帮你加载数据..."
+    static let CSRefreshFooterRefreshing = "正在加载数据..."
     
     static let CSRefreshHeaderPullToRefresh = "下拉可以刷新"
     
     static let CSRefreshHeaderReleaseToRefresh = "松开立即刷新"
     
-    static let CSRefreshHeaderRefreshing = "正在帮你刷新..."
+    static let CSRefreshHeaderRefreshing = "正在刷新..."
     
     
     //.=======================================//
@@ -66,4 +66,8 @@ struct CSRefreshConstStruct {
     static var CSPullToRefreshText = "pullToRefreshText"
     
     static var LastUpdateTime = "lastUpdateTime"
+    
+    
+    //.******** 尾部动态绑定指针 *********/
+    static var CSRefreshFootViewPointKey = "CSRefreshFootViewpointKey"
 }
