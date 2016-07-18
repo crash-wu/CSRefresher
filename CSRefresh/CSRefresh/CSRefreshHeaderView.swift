@@ -34,16 +34,16 @@ class CSRefreshHeaderView: CSRefreshBaseView {
        
         get{
             
-            return objc_getAssociatedObject(self, &CSRefreshConstStruct.LastUpdateTime) as? NSDate
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.shareManager.LastUpdateTime) as? NSDate
         }
         
         set{
             
             //归档
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: CSRefreshConstStruct.CSRefreshHeaderTimeKey)
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: CSRefreshConstStruct.shareManager.CSRefreshHeaderTimeKey)
             NSUserDefaults.standardUserDefaults().synchronize()
             
-            objc_setAssociatedObject(self, &CSRefreshConstStruct.LastUpdateTime, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.shareManager.LastUpdateTime, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             //更新时间
             self.updateTimeLabel()
         }
@@ -52,7 +52,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
     //.******** 更新时间 *********/
     func updateTimeLabel()->Void{
         
-        let lastUpdateTmp = objc_getAssociatedObject(self, &CSRefreshConstStruct.LastUpdateTime) as? NSDate
+        let lastUpdateTmp = objc_getAssociatedObject(self, &CSRefreshConstStruct.shareManager.LastUpdateTime) as? NSDate
         
         if lastUpdateTmp == nil{
             
@@ -98,9 +98,9 @@ class CSRefreshHeaderView: CSRefreshBaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.pullToRefreshText = CSRefreshConstStruct.CSRefreshHeaderPullToRefresh
-        self.releaseToRefreshText = CSRefreshConstStruct.CSRefreshFooterReleaseToRefresh
-        self.refreshingText = CSRefreshConstStruct.CSRefreshHeaderRefreshing
+        self.pullToRefreshText = CSRefreshConstStruct.shareManager.CSRefreshHeaderPullToRefresh
+        self.releaseToRefreshText = CSRefreshConstStruct.shareManager.CSRefreshFooterReleaseToRefresh
+        self.refreshingText = CSRefreshConstStruct.shareManager.CSRefreshHeaderRefreshing
 
     }
     
@@ -151,7 +151,7 @@ class CSRefreshHeaderView: CSRefreshBaseView {
             return
         }
     
-        if CSRefreshConstStruct.CSRefreshContentOffset == keyPath {
+        if CSRefreshConstStruct.shareManager.CSRefreshContentOffset == keyPath {
             
             self.adjustStateWithContentOffset()
         }
@@ -230,13 +230,13 @@ class CSRefreshHeaderView: CSRefreshBaseView {
                     self.lastUpdateTime = NSDate()
                     
                     
-                    UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshSlowAnimationDuration, animations: { 
+                    UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshSlowAnimationDuration, animations: {
                         
                         self.scrollView.mj_contentInsetTop = self.scrollView.mj_contentInsetTop - self.mj_height
                     })
                 }else{
                     
-                    UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshFastAnimationDuration, animations: { 
+                    UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshFastAnimationDuration, animations: {
                         
                         self.arrowImage?.transform = CGAffineTransformIdentity
                     })
@@ -244,14 +244,14 @@ class CSRefreshHeaderView: CSRefreshBaseView {
                 break
             case .CSRefreshStatePulling :
                 //松开既可以刷新
-                UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshFastAnimationDuration, animations: { 
+                UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshFastAnimationDuration, animations: {
                     self.arrowImage?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
                 })
                 
                 break
             case .CSRefreshStateRefreshing :
                 //正在刷新中
-                UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshFastAnimationDuration, animations: { 
+                UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshFastAnimationDuration, animations: {
                     //增加滚动区域
                     let top :CGFloat = self.scrollViewOriginalInset!.top + self.mj_height
                     self.scrollView.mj_contentInsetTop = top
@@ -266,6 +266,11 @@ class CSRefreshHeaderView: CSRefreshBaseView {
                 break
             }
         }
+    }
+    
+    deinit{
+        
+        
     }
     
 }

@@ -157,17 +157,17 @@ extension UIScrollView{
         get{
             
 
-            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSRefreshHeaderViewKey) as? CSRefreshHeaderView
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSRefreshHeaderViewKey) as? CSRefreshHeaderView
         }
         
         set{
             
-            self.willChangeValueForKey(CSRefreshConstStruct.CSRefreshHeaderViewKey)
+            self.willChangeValueForKey(CSRefreshConstStruct.shareManager.CSRefreshHeaderViewKey)
             
             //动态绑定
-            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSRefreshHeaderViewKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSRefreshHeaderViewKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
             
-            self.didChangeValueForKey(CSRefreshConstStruct.CSRefreshHeaderViewKey)
+            self.didChangeValueForKey(CSRefreshConstStruct.shareManager.CSRefreshHeaderViewKey)
         }
         
     }
@@ -304,17 +304,17 @@ extension UIScrollView{
         
         get{
             
-            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSRefreshFootViewPointKey) as? CSRefreshFootView
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSRefreshFootViewPointKey) as? CSRefreshFootView
         }
         
         
         set{
             
-            self.willChangeValueForKey(CSRefreshConstStruct.CSRefreshFootViewPointKey)
+            self.willChangeValueForKey(CSRefreshConstStruct.shareManager.CSRefreshFootViewPointKey)
             
-            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSRefreshFootViewPointKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSRefreshFootViewPointKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
             
-            self.didChangeValueForKey(CSRefreshConstStruct.CSRefreshFootViewPointKey)
+            self.didChangeValueForKey(CSRefreshConstStruct.shareManager.CSRefreshFootViewPointKey)
         }
     }
     

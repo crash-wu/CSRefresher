@@ -78,7 +78,7 @@ class CSRefreshBaseView: UIView {
                     //普通状态
                     if self.state == .CSRefreshStateRefreshing{
         
-                        UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshSlowAnimationDuration * 0.6, animations: {
+                        UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshSlowAnimationDuration * 0.6, animations: {
                                 [weak self] in
                                 self?.activityView?.alpha = 0.0
         
@@ -90,7 +90,7 @@ class CSRefreshBaseView: UIView {
                              self?.activityView?.alpha = 1.0
                            })
         
-                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64( UInt64(CSRefreshConstStruct.CSRefreshSlowAnimationDuration ) * NSEC_PER_SEC)), dispatch_get_main_queue() , {
+                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64( UInt64(CSRefreshConstStruct.shareManager.CSRefreshSlowAnimationDuration ) * NSEC_PER_SEC)), dispatch_get_main_queue() , {
                         // 再次设置回normal
                         self.state = .CSRefreshStateNormal
                       })
@@ -200,7 +200,7 @@ class CSRefreshBaseView: UIView {
     
     override init(frame: CGRect) {
         
-        super.init(frame: CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, CSRefreshConstStruct.CSRefreshViewHeight))
+        super.init(frame: CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, CSRefreshConstStruct.shareManager.CSRefreshViewHeight))
         
         self.autoresizingMask = [.FlexibleWidth]
 
@@ -234,12 +234,12 @@ class CSRefreshBaseView: UIView {
         
         //旧的父控件移除监听
         
-        superview?.removeObserver(self, forKeyPath: CSRefreshConstStruct.CSRefreshContentOffset, context: nil)
+        superview?.removeObserver(self, forKeyPath: CSRefreshConstStruct.shareManager.CSRefreshContentOffset, context: nil)
         
         
         guard newSuperview == nil else{
             
-            newSuperview?.addObserver(self, forKeyPath: CSRefreshConstStruct.CSRefreshContentOffset, options: .New, context: nil)
+            newSuperview?.addObserver(self, forKeyPath: CSRefreshConstStruct.shareManager.CSRefreshContentOffset, options: .New, context: nil)
             
             //设置宽度
             self.mj_width = newSuperview!.mj_width
@@ -335,12 +335,12 @@ class CSRefreshBaseView: UIView {
         
         get{
             
-            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSPullToRefreshText) as? String
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSPullToRefreshText) as? String
         }
         
         set{
             
-            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSPullToRefreshText, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSPullToRefreshText, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.settingLabelText()
         }
     }
@@ -348,12 +348,12 @@ class CSRefreshBaseView: UIView {
     var releaseToRefreshText :String?{
         get{
             
-            return objc_getAssociatedObject(self, &CSRefreshConstStruct.CSReleaseToRefreshText) as? String
+            return objc_getAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSReleaseToRefreshText) as? String
         }
         
         set{
 
-            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSReleaseToRefreshText, newValue,.OBJC_ASSOCIATION_RETAIN_NONATOMIC )
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSReleaseToRefreshText, newValue,.OBJC_ASSOCIATION_RETAIN_NONATOMIC )
             self.settingLabelText()
         }
     }
@@ -362,12 +362,12 @@ class CSRefreshBaseView: UIView {
         
         get{
             
-            return  objc_getAssociatedObject(self, &CSRefreshConstStruct.CSRefreshingText) as? String
+            return  objc_getAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSRefreshingText) as? String
         }
         
         set{
             
-            objc_setAssociatedObject(self, &CSRefreshConstStruct.CSRefreshingText, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &CSRefreshConstStruct.shareManager.CSRefreshingText, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.settingLabelText()
         }
     }
@@ -393,5 +393,13 @@ class CSRefreshBaseView: UIView {
         
     }
     
+    
+    deinit{
+        
+        self.removeObserver(self, forKeyPath: CSRefreshConstStruct.shareManager.CSRefreshContentOffset, context: nil)
+        
+        self.removeObserver(self, forKeyPath: CSRefreshConstStruct.shareManager.CSRefreshContentSize)
+        
+    }
     
 }

@@ -25,13 +25,13 @@ class CSRefreshFootView: CSRefreshBaseView {
         
         //设置上拉刷新提示文本
         //上拉
-        self.pullToRefreshText = CSRefreshConstStruct.CSRefreshFooterPullToRefresh
+        self.pullToRefreshText = CSRefreshConstStruct.shareManager.CSRefreshFooterPullToRefresh
         
         //释放加载
-        self.releaseToRefreshText = CSRefreshConstStruct.CSRefreshFooterReleaseToRefresh
+        self.releaseToRefreshText = CSRefreshConstStruct.shareManager.CSRefreshFooterReleaseToRefresh
         
         //正在加载 
-        self.refreshingText = CSRefreshConstStruct.CSRefreshFooterRefreshing
+        self.refreshingText = CSRefreshConstStruct.shareManager.CSRefreshFooterRefreshing
         
     }
     
@@ -50,11 +50,11 @@ class CSRefreshFootView: CSRefreshBaseView {
         super.willMoveToSuperview(newSuperview)
         
         //移除旧的父视图监听
-        superview?.removeObserver(self, forKeyPath: CSRefreshConstStruct.CSRefreshContentSize)
+        superview?.removeObserver(self, forKeyPath: CSRefreshConstStruct.shareManager.CSRefreshContentSize)
         
         guard newSuperview == nil else{
             //添加视图变化监听
-            newSuperview?.addObserver(self, forKeyPath: CSRefreshConstStruct.CSRefreshContentSize, options: .New, context: nil)
+            newSuperview?.addObserver(self, forKeyPath: CSRefreshConstStruct.shareManager.CSRefreshContentSize, options: .New, context: nil)
             
             //调整frame
             adjustFrameWithContenSize()
@@ -152,14 +152,14 @@ class CSRefreshFootView: CSRefreshBaseView {
                     
                     self.arrowImage?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
                     
-                    UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshSlowAnimationDuration, animations: { 
+                    UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshSlowAnimationDuration, animations: {
                         
                         self.scrollView.mj_contentInsetBottom = self.scrollViewOriginalInset!.bottom
                         
                     })
                 }else{
                     
-                    UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshFastAnimationDuration, animations: { 
+                    UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshFastAnimationDuration, animations: {
                         
                         self.arrowImage?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
                     })
@@ -179,7 +179,7 @@ class CSRefreshFootView: CSRefreshBaseView {
                 
             case .CSRefreshStatePulling :
                 //上拉过程，改变箭头方向
-                UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshFastAnimationDuration, animations: { 
+                UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshFastAnimationDuration, animations: {
                     
                     
                     self.arrowImage?.transform = CGAffineTransformIdentity
@@ -193,7 +193,7 @@ class CSRefreshFootView: CSRefreshBaseView {
                 self.lastRefreshCount = totalCellCountInScrollView()
                 
                 
-                UIView.animateWithDuration(CSRefreshConstStruct.CSRefreshFastAnimationDuration, animations: { 
+                UIView.animateWithDuration(CSRefreshConstStruct.shareManager.CSRefreshFastAnimationDuration, animations: {
                     
                     var  bottom : CGFloat = self.mj_height + self.scrollViewOriginalInset!.bottom
                     
@@ -298,12 +298,12 @@ extension CSRefreshFootView{
             return
         }
         
-        if keyPath == CSRefreshConstStruct.CSRefreshContentSize {
+        if keyPath == CSRefreshConstStruct.shareManager.CSRefreshContentSize {
             
             //调整frame
             adjustFrameWithContenSize()
             
-        }else if keyPath == CSRefreshConstStruct.CSRefreshContentOffset{
+        }else if keyPath == CSRefreshConstStruct.shareManager.CSRefreshContentOffset{
             
             //如果正在处于刷新状态，直接返回
             if self.state == .CSRefreshStateRefreshing { return}

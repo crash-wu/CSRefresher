@@ -9,47 +9,49 @@
 import Foundation
 import UIKit
 
-struct CSRefreshConstStruct {
+class  CSRefreshConstStruct  :NSObject{
+    
+   static  let shareManager = CSRefreshConstStruct()
     
     //.=======================================//
     //          MARK: 上拉下拉View的高度        //
     //=======================================//
-    static let CSRefreshViewHeight : CGFloat = 64.0
+     let CSRefreshViewHeight : CGFloat = 64.0
     
     //.=======================================//
     //          MARK: 刷新动画时间              //
     //=======================================//
     
-    static let CSRefreshFastAnimationDuration = 0.25
+     let CSRefreshFastAnimationDuration = 0.25
     
-    static let CSRefreshSlowAnimationDuration = 0.4
+     let CSRefreshSlowAnimationDuration = 0.4
     
     
     //.=======================================//
     //          MARK: 上拉下拉提示描述          //
     //=======================================//
     
-    static let CSRefreshFooterPullToRefresh = "上拉加载更多数据"
+     let CSRefreshFooterPullToRefresh = "上拉加载更多数据"
     
-    static let CSRefreshFooterReleaseToRefresh = "松开立即"
+     let CSRefreshFooterReleaseToRefresh = "松开立即"
     
-    static let CSRefreshFooterRefreshing = "正在加载数据..."
+     let CSRefreshFooterRefreshing = "正在加载数据..."
     
-    static let CSRefreshHeaderPullToRefresh = "下拉可以刷新"
+     let CSRefreshHeaderPullToRefresh = "下拉可以刷新"
     
-    static let CSRefreshHeaderReleaseToRefresh = "松开立即刷新"
+     let CSRefreshHeaderReleaseToRefresh = "松开立即刷新"
     
-    static let CSRefreshHeaderRefreshing = "正在刷新..."
+     let CSRefreshHeaderRefreshing = "正在刷新..."
     
     
     //.=======================================//
     //          MARK:                         //
     //=======================================//
-    static let CSRefreshHeaderTimeKey = "CSRefreshHeaderView"
+     let CSRefreshHeaderTimeKey = "CSRefreshHeaderView"
     
-    static let CSRefreshContentOffset = "contentOffset"
+     let CSRefreshContentOffset = "contentOffset"
     
-    static let CSRefreshContentSize = "contentSize"
+     let CSRefreshContentSize = "contentSize"
     
     
     //.=======================================//
@@ -57,17 +59,17 @@ struct CSRefreshConstStruct {
     //=======================================//
     
     //.******** 头部动态绑定指针 *********/
-    static var  CSRefreshHeaderViewKey = "CSRefreshHeaderViewKey"
+     var  CSRefreshHeaderViewKey = "CSRefreshHeaderViewKey"
     
-    static var CSReleaseToRefreshText = "releaseToRefreshText"
+     var CSReleaseToRefreshText = "releaseToRefreshText"
     
-    static var CSRefreshingText = "refreshingText"
+     var CSRefreshingText = "refreshingText"
     
-    static var CSPullToRefreshText = "pullToRefreshText"
+     var CSPullToRefreshText = "pullToRefreshText"
     
-    static var LastUpdateTime = "lastUpdateTime"
+     var LastUpdateTime = "lastUpdateTime"
     
     
     //.******** 尾部动态绑定指针 *********/
-    static var CSRefreshFootViewPointKey = "CSRefreshFootViewpointKey"
+     var CSRefreshFootViewPointKey = "CSRefreshFootViewpointKey"
 }
