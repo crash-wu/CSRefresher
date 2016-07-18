@@ -179,7 +179,7 @@ extension UIScrollView{
 
     
     
-    func dropDownToRefresh(handler:(Void->Void)?){
+  public func dropDownToRefresh(handler:(Void->Void)?){
         
         if self.header == nil{
             
@@ -195,7 +195,7 @@ extension UIScrollView{
     /**
      移除下拉刷新表头控件
      */
-    func removeHeader()->Void{
+  public  func removeHeader()->Void{
         
         self.header?.removeFromSuperview()
         self.header = nil
@@ -205,7 +205,7 @@ extension UIScrollView{
     /**
      主动让下拉刷新头部控件进入刷新状态
      */
-    func headerBeginRefreshing()->Void{
+   public func headerBeginRefreshing()->Void{
         
         self.header?.beginRefreshing()
     }
@@ -213,7 +213,7 @@ extension UIScrollView{
     /**
      让下拉刷新头部控件停止刷新状态
      */
-    func headerEndRefreshing()->Void{
+  public  func headerEndRefreshing()->Void{
         
         self.header?.endRefreshing()
     }
@@ -224,7 +224,7 @@ extension UIScrollView{
      
      :param: hidden (true 不可见，false 可见)
      */
-    func setHeaderHidden(hidden:Bool)->Void{
+   public  func setHeaderHidden(hidden:Bool)->Void{
         
         self.header?.hidden = hidden
     }
@@ -235,7 +235,7 @@ extension UIScrollView{
      
      :returns: (true 不可见，false可见)
      */
-    func isHeaderHidden()->Bool{
+   public func isHeaderHidden()->Bool{
         
         return self.header!.hidden
     }
@@ -246,7 +246,7 @@ extension UIScrollView{
      
      :returns: （true 正处于刷新状态）
      */
-    func isHeaderRefreshing()->Bool{
+   public func isHeaderRefreshing()->Bool{
         
         return self.header?.state == .CSRefreshStateRefreshing
     }
@@ -255,7 +255,7 @@ extension UIScrollView{
     //.=======================================//
     //          MARK: 头部刷新显示文本          //
     //=======================================//
-    var headerPullToRefreshText :String?{
+   public var headerPullToRefreshText :String?{
         
         get{
             
@@ -268,7 +268,7 @@ extension UIScrollView{
         }
     }
     
-    var headerReleaseToRefreshText :String?{
+   public var headerReleaseToRefreshText :String?{
         
         get{
             
@@ -281,7 +281,7 @@ extension UIScrollView{
         }
     }
     
-    var headerRefreshingText :String?{
+   public var headerRefreshingText :String?{
         
         get{
             
@@ -323,7 +323,7 @@ extension UIScrollView{
      
      :param: handler 上拉刷新闭包
      */
-    func pullUpToRefresh(handler:(Void->Void)?)->Void{
+   public func pullUpToRefresh(handler:(Void->Void)?)->Void{
         
         if self.footer == nil {
             
@@ -340,7 +340,7 @@ extension UIScrollView{
     /**
      移除上拉刷新尾部控件
      */
-    func removeFooter()->Void{
+   public  func removeFooter()->Void{
         
         self.footer?.removeFromSuperview()
         self.footer = nil
@@ -358,7 +358,7 @@ extension UIScrollView{
     /**
      停止刷新
      */
-    func footerEndRefresh()->Void{
+   public func footerEndRefresh()->Void{
         
         self.footer?.endRefreshing()
     }
@@ -369,7 +369,7 @@ extension UIScrollView{
      
      :param: hidden 隐藏状态(true = 隐藏)
      */
-    func setFooterHidden(hidden :Bool) ->Void{
+    public func setFooterHidden(hidden :Bool) ->Void{
         
         self.footer?.hidden = hidden
     }
@@ -379,7 +379,7 @@ extension UIScrollView{
      
      :returns: true = 隐藏
      */
-    func isFooterHidden()->Bool{
+    public func isFooterHidden()->Bool{
         
         return self.footer!.hidden
     }
@@ -389,7 +389,7 @@ extension UIScrollView{
     //          MARK: 设置尾部刷新控件提示文本    //
     //=======================================//
     
-    var footerPullToRefreshText :String?{
+   public var footerPullToRefreshText :String?{
         
         get{
             
@@ -403,7 +403,7 @@ extension UIScrollView{
     }
     
     
-    var footerReleaseToRefreshText : String?{
+   public var footerReleaseToRefreshText : String?{
         
         get{
             
@@ -418,7 +418,7 @@ extension UIScrollView{
     }
     
     
-    var footerRefreshingText: String?{
+   public var footerRefreshingText: String?{
         
         get{
             
